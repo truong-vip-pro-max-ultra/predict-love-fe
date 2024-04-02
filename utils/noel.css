@@ -1,0 +1,48 @@
+
+/* ----------noel----------- */
+#bongbong{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    position: fixed;
+}
+/* .cursor {
+    width: 80px;
+    height: 115px;
+    transition: all 200ms ease-out;
+    position: fixed;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    transform: translate(calc(-50% + 15px), -50%);
+    background-image: url(https://raw.githubusercontent.com/truongjae/tools/main/right.png);
+    background-size: cover;
+    background-position: center;
+    margin-left: 42px;
+    margin-top: 70px;
+    z-index: 1000;
+  }
+  
+.cursor2 {
+    width: 85px;
+    height: 115px;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width .3s, height .3s, opacity .3s;
+    background-image: url(https://raw.githubusercontent.com/truongjae/tools/main/left.png);
+    background-size: cover;
+    background-position: center;
+    margin-top: 70px;
+    z-index: 1000;
+    
+  } */
+/* === noel === */
+a{
+    z-index: 23;
+}
+.wrap-input100.validate-input{
+    z-index: 2;
+}
+

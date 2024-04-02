@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Predict Lover FB</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="./utils/toastr.css">
+<link rel="stylesheet" href="./utils/loading.css">
+<link rel="stylesheet" href="./utils/noel.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div id="bodyForm" class="container-login100" style="background-image: url('images/bgr3.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-10"  style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+				<form id="formRegister" class="login100-form validate-form">
+					<span class="login100-form-title p-b-49">
+						Predict Lover
+						<br>
+						<span style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 0.45em; color: rgb(241, 20, 142);">Dự Đoán Người Thương Thầm</span>
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Tài khoản không được để trống">
+						<span class="label-input100">Tài Khoản</span>
+						<input class="input100" type="text" name="username" placeholder="Nhập tên tài khoản">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Mật khẩu không được để trống">
+						<span class="label-input100">Mật Khẩu</span>
+						<input class="input100" type="password" name="password" placeholder="Nhập mật khẩu">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
+					<div class="text-right p-t-8 p-b-31">
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button id="btnRegister" class="login100-form-btn">
+								Đăng Ký
+							</button>
+						</div>
+					</div>
+
+				
+
+					<div class="flex-col-c p-t-30">
+						<span class="txt1 p-b-17">
+							Bạn đã có tài khoản ư?
+						</span>
+
+						<a  href="index.html" class="txt2">
+							<b>Đăng Nhập Ngay!</b>
+						</a>
+					</div>
+					<div class="txt1 text-center p-t-54 p-b-10">
+						<span>
+							Liên Hệ Hỗ Trợ
+						</span>
+					</div>
+
+					
+					<div class="flex-c-m">
+						<a href="https://www.facebook.com/100029031824085" class="login100-social-item bg1">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://www.youtube.com/channel/UCR33v6d0J3ia4T69_7dUITA" class="login100-social-item bg3">
+							<i class="fa fa-youtube"></i>
+						</a>
+
+						<a href="https://t.me/truongjae" class="login100-social-item bg2">
+							<i class="fa fa-telegram"></i>
+						</a>
+					</div>
+					<div class="txt1 text-center p-t-10 p-b-10">
+						<span>
+							Copyright © Truongjae 2022
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	<div id="loading">
+		<div class="loader">
+			<div class="inner one"></div>
+			<div class="inner two"></div>
+			<div class="inner three"></div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+		<!-- request -->
+		<script src="./utils/toastr.js"></script>
+		<script src="./config-server/config-server.js"></script>
+		<script src="./utils/alert-response.js"></script>
+	<script>
+			var loading = document.getElementById("loading").style;
+			var bodyForm = document.getElementById("bodyForm").style;
+			loading.display="none";
+			if(localStorage.getItem("jwtToken")!=null){
+				window.location.href = './home.html';
+			}
+			$('#btnRegister').click(function (e) {
+			bodyForm.opacity=0.3;
+			loading.display="block";
+			e.preventDefault();
+			var data = {};
+			var formData = $('#formRegister').serializeArray();
+			$.each(formData, function (i, v) {
+				data["" + v.name + ""] = v.value;
+			});
+			$.ajax({
+				url: (server+'/auth/register'),
+				type: "POST",
+				contentType: 'application/json;charset=utf-8',
+				dataType: "json",
+				data: JSON.stringify(data),
+				success: function (result) {
+					loading.display="none";
+					bodyForm.opacity=1;
+					alertSuccess("Đăng ký thành công")
+					setTimeout(() => {
+						window.location.href = './index.html';
+					}, 2000);
+				},
+				error: function (xhr, status, error) {
+					loading.display="none";
+					bodyForm.opacity=1;
+					var result = xhr.responseJSON;
+					try{
+						alertError(result['message']);
+						alertError(result['username']);
+						alertError(result['password']);
+					}
+					catch(err){
+						alertError("Lỗi kết nối đến server");
+					}
+				}
+			});
+		});
+	</script>
+<script src="./utils/noel.js"></script>
+</body>
+</html>

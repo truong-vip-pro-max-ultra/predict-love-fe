@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Predict Love FB</title>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./utils/toastr.css">
+    <link rel="stylesheet" href="./utils/loading.css">
+    <link rel="stylesheet" href="./utils/history-amount.css">
+    <link rel="stylesheet" href="./utils/form-change-password.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+        #info-user{
+            width: 50em;
+            height: 22em;
+            background-color: rgba(255,255,255,0.2);
+            margin-top: 20px;
+            border-radius: 20px;
+            margin: auto;
+            margin-top: 20px;
+            text-align: center;
+            display: flex;         
+            flex-direction: column;  
+            justify-content: center;
+            align-items: center; 
+        } 
+        #btn-logout{
+            font-size: 18px;
+            color: rgb(255, 13, 146);
+            border: 1px solid rgb(255, 13, 146);
+        }
+        #btn-logout:hover{
+            background-color: rgb(255, 13, 146);;
+            color: white;
+        }
+
+        .tbl-content{
+            height: 80vh;
+            text-align: center;
+            }
+            th{
+            font-size: 20px;
+            }
+            td{
+            font-size: 18px;
+            }
+            tr:hover td{
+            font-size: 19px;
+            transition: all 0.2s;
+            color: rgb(0, 0, 0);
+            }
+
+        #btn-setting-user:hover{
+            display: block;
+            transform: scale(1.2);
+            transition: all 0.2s;
+        }
+    </style>
+  
+    <div id="bodyForm" class="wrapper">
+        
+        <div id="info-user" style="position: relative;">
+            <div style="position: absolute; right: 0; top: 0; margin: 10px;">
+            <svg id="btn-setting-user" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+            </div>
+            <div class="button mt-2 d-flex flex-row align-items-center">
+                <p id="username" style="font-size: 35px; text-transform: uppercase; margin-top: 20px;"></p>
+                <button style="border-radius: 20px;" id="btn-logout" class="btn btn-sm btn-outline-primary w-100 ml-3" onclick="localStorage.clear(); window.location.href = './index.html';" >Đăng Xuất</button>
+            </div>
+            
+            <!-- <p id="accountBalance" style="font-size: 20px; font-weight: normal;
+                border: 1px solid #3378ff;
+                color: #0055ff;
+                display: inline;
+                padding: 10px;
+                margin-top: 30px;
+                border-radius: 50px;"></p>
+                <button id="btn-payment" style="font-size: 20px;border-radius: 20px;" class="btn btn-sm btn-primary w-100 p-2 ml-2">Nạp Tiền</button> -->
+                <div class="button d-flex flex-row align-items-center">
+                    <p id="accountBalance" style="font-size: 20px; font-weight: normal;
+                    border: 1px solid #3378ff;
+                    color: #0055ff;
+                    display: inline;
+                    padding: 10px;
+                    margin-top: 10px;
+                    border-radius: 50%;"></p>
+
+                    <button id="btn-payment" style="font-size: 20px;border-radius: 20px;" class="btn btn-sm btn-primary w-100 p-2 ml-2">Nạp Tiền</button>
+                </div>       
+
+            
+            
+                <div style="width: 80%; margin: auto;">
+                    <div class="button mt-2 d-flex flex-row align-items-center">
+
+                        <!-- <button id="btn-predict" style="font-size: 20px; border-radius: 20px;" class="btn btn-sm btn-outline-primary p-2 w-100">Dự Đoán Người Thương Thầm FB</button>
+                        <button id="btn-payment" style="font-size: 20px;border-radius: 20px;" class="btn btn-sm btn-primary w-100 p-2 ml-2">Nạp Tiền</button> -->
+
+                        <button id="btn-predict" style="font-size: 20px; border-radius: 20px;" class="btn btn-sm btn-outline-primary p-2 w-100">Dự Đoán Người Thương Thầm FB</button>
+                        <button id="btn-group-mess" style="font-size: 20px;border-radius: 20px;" class="btn btn-sm btn-primary w-100 p-2 ml-2" onclick="window.location.href = './chat.html';">Chat Thầm Kín</button>
+
+                    </div>
+                </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button style="font-size: 18px;" class="btn btn-sm btn-success mt-3 pt-2 pb-2 pl-4 pr-4 rounded-pill" id="btn-history-amount">Lịch Sử Nạp Tiền</button>
+        </div>
+
+        <div id="content-table"  style="margin-top: 20px;" class="content">
+            <div style="padding: 0 0;" class="container">
+              <div id="tables" class="table-responsive custom-table-responsive">
+                <table id="data-table-amounts" class="table custom-table">
+                </table>
+                <div class="d-flex justify-content-center">
+                    <button style="font-size: 18px;" class="btn btn-sm btn-danger mt-3 pt-2 pb-2 pl-4 pr-4 rounded-pill" id="btn-close-history-amount">Thu Gọn</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <ul class="bg-bubbles">
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+                <li><div class="heart pulse2">♥</div></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="loading">
+		<div class="loader">
+			<div class="inner one"></div>
+			<div class="inner two"></div>
+			<div class="inner three"></div>
+		</div>
+	</div>
+   
+    <style>
+        #form-predict,#payment,#form-setting-user{
+            width: 30em;
+            height: 10em;
+            /* background-color:  rgba(255, 0, 128, 0.4); */
+            background-color:  rgb(255, 33, 144);
+            font-family: monospace;
+            font-size: 28px;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 20px;
+        }
+        #form-predict input, #form-predict button{
+            font-family: monospace;
+            font-size: 28px;
+        }
+        #btn-close,#btn-close-payment,#btn-close-setting{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 5px;
+            border: none;
+            outline: none;
+        }
+        #form-setting-user li{
+            list-style-type: none;
+            background-color: #000000;
+            padding: 10px;
+            margin-top: 10px;
+            color: white;
+            border-radius: 10px;
+            
+        }
+
+        #payment{
+            width: 30em;
+            /* height: 14em; */
+            height: auto;
+            /* background-color:rgba(255, 0, 128, 0.4); */
+            background-color:  rgb(255, 33, 144);
+            font-family: monospace;
+            font-size: 28px;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        ::-webkit-input-placeholder {
+            font-family: monospace!important;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            font-family: monospace!important;
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+            font-family: monospace!important;
+        }
+
+        /* Overriding styles */
+
+        ::-webkit-input-placeholder {
+            font-family: monospace!important;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            font-family: monospace!important;
+        }
+        ::-moz-placeholder {  /* Firefox 19+ */
+            font-family: monospace!important;
+        }
+    </style>
+
+    <div id="payment">
+        <button id="btn-close-payment">X</button>
+        <p>Để nạp tiền vui lòng chuyển khoản</p>
+        <p>Với nội dung: <i><b> <span style="color: white;" id="id-payment"></span></b></i></p>
+        <p>Đến STK <b style="color: white;"><u><i>04168769601</i></u></b> ngân hàng <b style="color: white;"><u><i>TPBank</i></u></b></p>
+        <p>Chủ tài khoản <b style="color: white;"><u><i>Nguyễn Gia Trường</i></u></b></p>
+        <p style="color: white;">Hoặc quét QR Code</p>
+        <img style="border-radius: 20px; margin-bottom: 10px;" id="img-bank" src="" width="400" alt="">
+        <p style="color: rgb(255, 255, 103);" >Chờ khoảng 8-10 phút số tiền tự động được nạp tương ứng với số tiền bạn chuyển</p>
+    </div>
+
+    <form action="#" id="form-predict">
+        <button id="btn-close">X</button>
+        <p>Chỉ với <i style="color: white;"><u><b id="price"></b></u></i>/lượt, bạn có thể xem được người thương thầm bạn trên Facebook với tỉ lệ chính xác lên đến <i style="color: white;">99.99%</i></p>
+        <div class="input-group mb-3">
+            <input id="url-fb" name="urlFB" type="text" class="form-control" placeholder="Nhập link Facebook cần xem:">
+            <div class="input-group-append">
+              <button id="btn-agree-predict" class="btn btn-warning" type="button">Xem Ngay</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="form-setting-user">
+        <button id="btn-close-setting">X</button>
+        <ul>
+            <li id="option-change-password">Đổi mật khẩu</li>
+            <li>Đổi thông tin</li>
+        </ul>
+    </div>
+
+<audio controls autoplay style="display:none;">
+	<source src="./asset/audio/audio.mp3" type="audio/mpeg">
+	Your browser does not support the audio element.
+</audio>
+<script>window.jQuery || document.write('<script src="asset/js/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="asset/js/jquery.flexslider.js"></script>
+<!-- <script src="asset/js/init.js"></script> -->
+<!-- request -->
+<script src="./utils/toastr.js"></script>
+<script src="./config-server/config-server.js"></script>
+<script src="./call-api/call-api.js"></script>
+<script src="./utils/alert-response.js"></script>
+<script src="./utils/event-setting-user.js"></script>
+<script>
+    callGetPredictLover();
+    getListAmount();
+</script>
+</body>
+</html>
